@@ -7,7 +7,7 @@ namespace FastEndpoints;
 public class StreamItem
 {
     /// <summary>event id</summary>
-    public string? Id { get; init; }
+    public string? Id { get; set; }
 
     /// <summary>event name</summary>
     public string EventName { get; init; }

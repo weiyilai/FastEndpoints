@@ -59,6 +59,19 @@ Visible with `Microsoft.OpenApi` 2.11.0 or later.
 
 ## Improvements 🚀
 
+<details><summary>SSE <code>StreamItem.Id</code> is now settable after construction</summary>
+
+`StreamItem.Id` was `init`-only, so SSE endpoints that own an incrementing event-id sequence had to pass a counter into helper methods or clone each item just to stamp the id. `Id` can now be assigned after construction:
+
+```csharp
+var item = SomeHelper();
+item.Id = (i++).ToString();
+```
+
+`EventName`, `Data`, and `Retry` remain `init`-only.
+
+</details>
+
 <details><summary>FluentValidation rules now apply to OpenAPI query, path, header, and cookie parameters</summary>
 
 `FastEndpoints.OpenApi` previously applied validator constraints only to request body schemas. Bodyless GET/HEAD endpoints (and mixed POST properties marked `[QueryParam]` / `[FromHeader]` / `[FromCookie]`) therefore omitted `required`, `minLength`, patterns, and numeric ranges from the generated document.
